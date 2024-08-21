@@ -15,7 +15,7 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Pages</a>
+                        <a href="{{route('settings')}}">Ayarlar</a>
                     </li>
                     <li class="separator">
                         <i class="flaticon-right-arrow"></i>
@@ -25,7 +25,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="page-category">Inner page content goes here</div>
+            <div class="page-category">Ayarlar Sayfası</div>
         </div>
     </div>
     @endsection
