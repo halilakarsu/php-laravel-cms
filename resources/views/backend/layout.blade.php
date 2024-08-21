@@ -31,7 +31,7 @@
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="blue">
 
-            <a href="index.html" class="logo">
+            <a href="{{route('admin.home')}}" class="logo">
                <h2 class="mt-3">LARAVEL <b class="text-light ">CMS</b></h2>
             </a>
             <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,7 +125,7 @@
                 </div>
                 <ul class="nav nav-primary">
                     <li class="nav-item active">
-                        <a  href="/" >
+                        <a  href="{{route('admin.home')}}" >
                             <i class="fas fa-home"></i>
                             <p>Anasayfa</p>
                            </a>

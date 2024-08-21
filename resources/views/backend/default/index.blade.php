@@ -7,16 +7,14 @@
                 <h4 class="page-title">Anasayfa</h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home">
-                        <a href="/">
+                        <a href="{{route('admin.home')}}">
                             <i class="flaticon-home"></i>
                         </a>
                     </li>
                     <li class="separator">
                         <i class="flaticon-right-arrow"></i>
                     </li>
-                    <li class="nav-item">
-                        <a href="#">Pages</a>
-                    </li>
+
                     <li class="separator">
                         <i class="flaticon-right-arrow"></i>
                     </li>
