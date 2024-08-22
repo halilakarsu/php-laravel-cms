@@ -26,7 +26,7 @@
                     <div class="card-title">Ayarları Düzenle</div>
                 </div>
                 <div class="card-body">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="{{route('settings.update', ['id'=>$editSettings->id])}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @if($editSettings->type=="file")
                         <div class="form-group">
@@ -39,11 +39,11 @@
 
                                 @if($editSettings->type=="text")d
                                     <label for="settings"><b>{{$editSettings->description}}</b></label>
-                                <input type="text" class="form-control" value="{{$editSettings->value}}">
+                                <input type="text" name="{{$editSettings->value}}" class="form-control" value="{{$editSettings->value}}">
                                 @endif
                                     @if($editSettings->type=="textarea")
                                         <label for="settings"><b>{{$editSettings->description}}</b></label>
-                                        <textarea type="text" class="form-control">{{$editSettings->value}}</textarea>
+                                        <textarea name="{{$editSettings->value}}" type="text" class="form-control">{{$editSettings->value}}</textarea>
                                     @endif
                                 <br>
                                 <div align="right" class="box-footer">

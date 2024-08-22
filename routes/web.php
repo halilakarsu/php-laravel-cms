@@ -8,3 +8,4 @@ Route ::get('admin/settings',[SettingsController::class,'index'])->name('setting
 Route::post('admin/sortable',[SettingsController::class,'sortable'])->name('sortable');
 Route::get('admin/settings/delete/{id}',[SettingsController::class,'destroy'])->name('detstroy');
 Route::get('admin/settings/edit/{id}',[SettingsController::class,'edit'])->name('settings.edit');
+Route::post('admin/settings/update/{id}',[SettingsController::class,'update'])->name('settings.update');

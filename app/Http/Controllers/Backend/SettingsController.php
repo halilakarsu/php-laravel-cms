@@ -35,4 +35,11 @@ class SettingsController extends Controller
           return view('backend.settings.edit')->with('editSettings',$editSettings);
        }
 
+       public function update(Request $request, $id){
+           $updateSettings=Settings::where('id',$id)->update(
+               ['value'=>$request->setting_value]
+           );
+             return back()->with("success","Düzenleme işlemi başarılı");
+       }
+
 }
