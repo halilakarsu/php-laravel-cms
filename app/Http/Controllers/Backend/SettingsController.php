@@ -8,18 +8,27 @@ use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
-   public function index(){
-     $dataSettings=Settings::all()->sortBy('sort');
-     return view('backend.settings.index',compact('dataSettings'));
+       public function index(){
+        $dataSettings=Settings::all()->sortBy('sort');
+      return view('backend.settings.index',compact('dataSettings'));
        }
        public function sortable(){
-       $item=$_POST['item'];
-           foreach ($item as $key => $value) {
+       $items=$_POST['item'];
+           foreach ($items as $key => $value) {
             $settings=Settings::find(intval($value));
             $settings->sort=intval($key);
             $settings->save();
-
        }
+           echo true;
+       }
+       public function destroy($id){
+         $deleteSettings=Settings::find($id);
+         if($deleteSettings->delete()){
+             return back()->with('success','işlem Başarılı');
+         }else {
+             return back()->with('error','İşlem Başarısız');
+         }
+
        }
 
 }

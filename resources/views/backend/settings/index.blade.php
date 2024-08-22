@@ -19,7 +19,6 @@
                         <a href="{{route('settings')}}">Ayarlar</a>
                     </li>
 
-
                 </ul>
             </div>
             <div class="page-category">
@@ -39,14 +38,18 @@
 
                                 <tbody id="sortable">
                                 @foreach($dataSettings as $key)
-
                                 <tr id="item-{{$key->id}}">
                                     <th class="sortable" scope="row">{{$key['description']}}</th>
                                     <td >{{$key->key}}</td>
                                     <td>{{$key->value}}</td>
                                     <td width="5px">{{$key->type}}</td>
-                                    <td width="5px"><a href="javascript:void(0)"><i class="fa fa-trash-alt text-danger"></i></a>
-                                    <a  href="javascript:void(0)"><i class="fa fa-edit text-primary ml-3"></i></a></td>
+                                    <td width="5px">
+                                        @if($key->delete==1)
+                                        <a href="javascript:void(0)"><i id="{{$key->id}}" class="fa fa-trash-alt text-danger"></i></a>
+                                        @endif
+                                    <a  href="javascript:void(0)"><i class="fa fa-edit text-primary ml-3"></i></a>
+
+                                    </td>
                                 </tr>
                                 @endforeach
                                 </tbody>
@@ -82,15 +85,25 @@
                   url:"{{route('sortable')}}",
                   success:function (msg){
                       if(msg) {
-                        alert("islem basarili");
+                        alertify.success("islem basarili");
                       } else {
-                       alert("islem basarisiz.");
+                       alertify.error("islem basarisiz.");
                       }
                   }
               });
           }
        });
        $('#sortable').disableSelection();
+    });
+    $(".fa-trash-alt").click(function(){
+            destroy_id=$(this).attr('id');
+            alertify.confirm('Lütfen Silme İşlemini Onaylayın','Bu işlem bir daha geri alınmayacaktır',
+             function () {
+                location.href="/settings/delete/"+destroy_id;
+             },
+                function(){
+                    alertify.error('Silme işlemi iptal edildi.');
+                })
     });
     </script>
 
