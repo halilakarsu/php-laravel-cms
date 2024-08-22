@@ -35,7 +35,6 @@
                                     <th>İşlemler</th>
                                 </tr>
                                 </thead>
-
                                 <tbody id="sortable">
                                 @foreach($dataSettings as $key)
                                 <tr id="item-{{$key->id}}">
@@ -47,7 +46,7 @@
                                         @if($key->delete==1)
                                         <a href="javascript:void(0)"><i id="{{$key->id}}" class="fa fa-trash-alt text-danger"></i></a>
                                         @endif
-                                    <a  href="javascript:void(0)"><i class="fa fa-edit text-primary ml-3"></i></a>
+                                    <a  href="{{route('settings.edit',['id'=>$key->id])}}"><i class="fa fa-edit text-primary ml-3"></i></a>
 
                                     </td>
                                 </tr>
@@ -99,7 +98,7 @@
             destroy_id=$(this).attr('id');
             alertify.confirm('Lütfen Silme İşlemini Onaylayın','Bu işlem bir daha geri alınmayacaktır',
              function () {
-                location.href="/settings/delete/"+destroy_id;
+                location.href="admin/settings/delete/"+destroy_id;
              },
                 function(){
                     alertify.error('Silme işlemi iptal edildi.');

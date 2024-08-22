@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="/backend/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/backend/assets/css/custom.css">
     <link rel="stylesheet" href="/backend/assets/css/atlantis.min.css">
+    <script src="https://cdn.ckeditor.com/4.25.0-lts/standard/ckeditor.js"></script>
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="/backend/assets/css/demo.css">
     <!--   Core JS Files   -->
@@ -225,5 +226,11 @@
 
 <!-- Atlantis JS -->
 <script src="/backend/assets/js/atlantis.min.js"></script>
+@if(session()->has('success'))
+    <script>alertify.success('{{session('success')}}')</script>
+@endif
+@if(session()->has('error'))
+    <script>alertify.error('{{session('error')}}')</script>
+@endif
 </body>
 </html>

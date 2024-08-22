@@ -30,5 +30,9 @@ class SettingsController extends Controller
          }
 
        }
+       public function edit($id){
+         $editSettings=Settings::where('id',$id)->first();
+          return view('backend.settings.edit')->with('editSettings',$editSettings);
+       }
 
 }
