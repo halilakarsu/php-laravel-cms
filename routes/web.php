@@ -3,9 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SettingsController;
 
-Route ::view('admin','backend.default.index')->name('admin.home');
-Route ::get('admin/settings',[SettingsController::class,'index'])->name('settings');
-Route::post('admin/sortable',[SettingsController::class,'sortable'])->name('sortable');
-Route::get('admin/settings/delete/{id}',[SettingsController::class,'destroy'])->name('detstroy');
-Route::get('admin/settings/edit/{id}',[SettingsController::class,'edit'])->name('settings.edit');
-Route::post('admin/settings/update/{id}',[SettingsController::class,'update'])->name('settings.update');
+Route::view('/', 'backend.default.index')->name('admin.home');
+
+
+Route::prefix('admin/settings')->group(function () {
+              Route::get('/', [SettingsController::class, 'index'])->name('settings');
+        Route::post('sortable', [SettingsController::class, 'sortable'])->name('sortable');
+        Route::get('delete/{id}', [SettingsController::class, 'destroy'])->name('detstroy');
+        Route::get('edit/{id}', [SettingsController::class, 'edit'])->name('settings.edit');
+        Route::post('update/{id}', [SettingsController::class, 'update'])->name('settings.update');
+});
