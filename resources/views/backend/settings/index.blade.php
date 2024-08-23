@@ -39,9 +39,14 @@
                                 @foreach($dataSettings as $key)
                                 <tr id="item-{{$key->id}}">
                                     <th class="sortable" scope="row">{{$key['description']}}</th>
-                                    <td >{{$key->key}}</td>
-                                    <td>{{$key->value}}</td>
+                                    <td >@if($key->type=="file")
+                                        <img width="50px" height="50px" src="/backend/images/settings/{{$key->value}}" alt="">
+                                         @else
+                                            {{$key->value}}
+                                        @endif</td>
+                                    <td width="5px">{{$key->key}}</td>
                                     <td width="5px">{{$key->type}}</td>
+
                                     <td width="5px">
                                         @if($key->delete==1)
                                         <a href="javascript:void(0)"><i id="{{$key->id}}" class="fa fa-trash-alt text-danger"></i></a>

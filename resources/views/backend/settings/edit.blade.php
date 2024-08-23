@@ -26,18 +26,22 @@
                     <div class="card-title">Ayarları Düzenle</div>
                 </div>
                 <div class="card-body">
+
                     <form action="{{route('settings.update', ['id'=>$editSettings->id])}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @if($editSettings->type=="file")
+                            <label for="settings"><b>Yüklü {{$editSettings->description}}</b></label><br><br>
+                            <img width="150px" height="150px" src="/backend/images/settings/{{$editSettings->value}}" alt="">
                         <div class="form-group">
-                        <label for="settings"><b>{{$editSettings->description}} Seç</b></label>
-                        <input type="file" class="form-control">
+                        <label for="settings"><b>{{$editSettings->description}} Değiştir</b></label>
+                        <input type="file" required name="value" class="form-control">
                         </div>
+                         <input type="hidden" name="oldFile" value="{{$editSettings->value}}">
                         @endif
 
                             <div class="form-group">
 
-                                @if($editSettings->type=="text")d
+                                @if($editSettings->type=="text")
                                     <label for="settings"><b>{{$editSettings->description}}</b></label>
                                 <input type="text" name="value" class="form-control" value="{{$editSettings->value}}">
                                 @endif
@@ -45,6 +49,8 @@
                                         <label for="settings"><b>{{$editSettings->description}}</b></label>
                                         <textarea name="value" type="text" class="form-control">{{$editSettings->value}}</textarea>
                                     @endif
+
+
                                 <br>
                                 <div align="right" class="box-footer">
                                     <button type="submit" class="btn btn-success">Düzenle</button>

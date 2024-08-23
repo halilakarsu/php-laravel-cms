@@ -30,10 +30,28 @@ class SettingsController extends Controller
           return view('backend.settings.edit')->with('editSettings',$editSettings);
        }
        public function update(Request $request, $id){
+                if($request->hasFile('value')){
+                 $request->validate([
+                     'value'=>'required|image|mimes:jpg,jpeg,png,|max:2048'
+                 ]);
+                 $fileName=rand(1,1000).'-'.$request->value->getClientOriginalName();
+                 $request->value->move(public_path('backend/images/settings'),$fileName);
+                 //we got file name and file extension
+                 $request->value=$fileName;
+
+                }
             $updateSettings=Settings::where('id',$id)
                 ->update([
                     "value" => $request->value
                     ]);
-             return back()->with("success","Düzenleme işlemi başarılı");
+                if($updateSettings){
+                    $path=public_path('backend/images/settings/').$request->oldFile;
+                    if(file_exists($path)){
+                       @unlink($path);
+                    }
+                    return back()->with("success","Düzenleme işlemi Başarılı");
+                }
+                return back()->with("error","Düzenleme İşlemi Başarısız.");
+
        }
 }
