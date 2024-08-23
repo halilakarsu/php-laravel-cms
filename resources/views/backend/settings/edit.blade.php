@@ -39,11 +39,11 @@
 
                                 @if($editSettings->type=="text")d
                                     <label for="settings"><b>{{$editSettings->description}}</b></label>
-                                <input type="text" name="{{$editSettings->value}}" class="form-control" value="{{$editSettings->value}}">
+                                <input type="text" name="value" class="form-control" value="{{$editSettings->value}}">
                                 @endif
                                     @if($editSettings->type=="textarea")
                                         <label for="settings"><b>{{$editSettings->description}}</b></label>
-                                        <textarea name="{{$editSettings->value}}" type="text" class="form-control">{{$editSettings->value}}</textarea>
+                                        <textarea name="value" type="text" class="form-control">{{$editSettings->value}}</textarea>
                                     @endif
                                 <br>
                                 <div align="right" class="box-footer">

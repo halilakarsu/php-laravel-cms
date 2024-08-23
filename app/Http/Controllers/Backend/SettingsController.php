@@ -1,14 +1,10 @@
 <?php
-
 namespace App\Http\Controllers\Backend;
-
 use App\Http\Controllers\Controller;
 use App\Models\Settings;
 use Illuminate\Http\Request;
-
 class SettingsController extends Controller
-{
-       public function index(){
+{       public function index(){
         $dataSettings=Settings::all()->sortBy('sort');
       return view('backend.settings.index',compact('dataSettings'));
        }
@@ -28,18 +24,16 @@ class SettingsController extends Controller
          }else {
              return back()->with('error','İşlem Başarısız');
          }
-
        }
        public function edit($id){
          $editSettings=Settings::where('id',$id)->first();
           return view('backend.settings.edit')->with('editSettings',$editSettings);
        }
-
        public function update(Request $request, $id){
-           $updateSettings=Settings::where('id',$id)->update(
-               ['value'=>$request->setting_value]
-           );
+            $updateSettings=Settings::where('id',$id)
+                ->update([
+                    "value" => $request->value
+                    ]);
              return back()->with("success","Düzenleme işlemi başarılı");
        }
-
 }
