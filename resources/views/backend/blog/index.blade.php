@@ -16,7 +16,7 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('settings.index')}}">Ayarlar</a>
+                        <a href="{{route('blog.index')}}">Blog</a>
                     </li>
 
                 </ul>

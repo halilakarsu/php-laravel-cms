@@ -169,7 +169,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a  href="{{route('settings')}}">
+                        <a  href="{{route('settings.index')}}">
                             <i class="fas fa-cog"></i>
                             <p>Ayarlar</p>
                             <span class="caret"></span>

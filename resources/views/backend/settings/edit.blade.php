@@ -16,7 +16,7 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('settings')}}">Ayarlar</a>
+                        <a href="{{route('settings.index')}}">Ayarlar</a>
                     </li>
                 </ul>
             </div>
