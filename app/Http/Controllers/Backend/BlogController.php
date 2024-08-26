@@ -3,21 +3,32 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blogs;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-       return view('backend.blog.index');
+        $blogs=Blogs::all()->sortBy('blog_sort');
+        return view('backend.blog.index',)->with('blogs',$blogs);
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function sortable(){
+
+      $items=$_POST['item'];
+        foreach ($items as $key => $value) {
+            $blogs=Blogs::find(intval($value));
+            $blogs->blog_sort=intval($key);
+            $blogs->save();
+        }
+        echo true;
+
+    }
+
+
     public function create()
     {
         //
@@ -60,6 +71,12 @@ class BlogController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $blogs=Blogs::destroy(intval($id));
+        if($blogs){
+          return 1;
+        }
+        else {
+            echo 0;
+        }
     }
 }

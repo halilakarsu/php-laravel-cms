@@ -176,8 +176,16 @@
                         </a>
 
                     </li>
+                    <li class="nav-item">
+                        <a  href="{{route('blog.index')}}">
+                            <i class="fas fa-layer-group"></i>
+                            <p>Blog</p>
+                            <span class="caret"></span>
+                        </a>
+
+                    </li>
                     <li class="mx-4 mt-2">
-                        <a href="http://themekita.com/atlantis-bootstrap-dashboard.html" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-heart"></i> </span>Buy Pro</a>
+                        <a href="halilakarsu.com" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-heart"></i> </span>Buy Pro</a>
                     </li>
                 </ul>
             </div>
