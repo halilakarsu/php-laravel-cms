@@ -34,12 +34,12 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12">
-                                        <form method="post" action="" enctype="multipart/form-data">
+                                        <form method="POST" action="{{route('blog.update',$blogEdit->id)}}" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="email2">Yüklü Görsel</label><br>
                                                 <img width="30%" src="/backend/images/blogs/{{$blogEdit->blog_file}}" alt="{{$blogEdit->blog_slug}}">
-
+                                              @method('put');
                                             </div>
                                         <div class="form-group">
                                             <label for="email2">Yeni Görsel Ekle</label>
@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="email2">Başlık</label>
-                                            <input type="text" class="form-control" name="blog_title" id="email2" value="{{$blogEdit->blog_slug}}">
+                                            <input type="text" class="form-control" name="blog_title" id="email2" value="{{$blogEdit->blog_title}}">
                                             </div>
 
                                         <div class="form-group">
@@ -74,7 +74,7 @@
 
                             <div class="card-action">
                                 <button type="submit" class="btn btn-success">Submit</button>
-                                <button class="btn btn-danger">Cancel</button>
+                                <a href="{{route('blog.index')}}" class="btn btn-danger">Cancel</a>
                             </div>
                                 </form>
                         </div>
