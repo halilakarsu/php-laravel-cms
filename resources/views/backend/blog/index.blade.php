@@ -1,6 +1,5 @@
 @extends('backend.layout')
 @section('content')
-
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
@@ -16,11 +15,11 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('settings.index')}}">Ayarlar</a>
+                            <a href="{{route('settings.index')}}">Blogs</a>
                         </li>
-
                     </ul>
                 </div>
+                <div align="right"><a href="{{route('blog.create')}}" class=" btn btn-xs btn-success">+Ekle</a></div>
                 <div class="page-category">
                     <div class="card full-height">
                         <div class="card-body">
@@ -35,33 +34,25 @@
                                     <tbody id="sortable">
                                     @foreach($blogs as $key)
                                         <tr id="item-{{$key->id}}">
-                                            <th class="sortable" scope="row">{{$key['blog_title']}}</th>
-
-
-                                            <td width="5px">
-
+                                            <td class="sortable" > {{$key['blog_title']}}<br>
+                                            <img width="20%" src="/backend/images/blogs/{{$key['blog_file']}}">
+                                            </td>
+                                            <td>
                                                     <a href="javascript:void(0)"><i id="{{$key->id}}" class="fa fa-trash-alt text-danger"></i></a>
-
-                                                <a  href="{{route('settings.edit',['id'=>$key->id])}}"><i class="fa fa-edit text-primary ml-3"></i></a>
-
+                                                <a  href="{{route('blog.edit',$key->id)}}"><i class="fa fa-edit text-primary ml-3"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
                             </div>
-
-
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-
-
         <script>
-
             $(document).ready(function(){
                 $.ajaxSetup(
                     {
@@ -112,5 +103,4 @@
                     })
             });
         </script>
-
 @endsection
