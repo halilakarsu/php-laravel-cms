@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sliders', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+                $table->id();
+                $table->timestamps();
+                $table->string('slider_title');
+                $table->string('slider_slug');
+                $table->string('slider_file');
+                $table->string('slider_sort')->nullable();
+                $table->text('slider_content')->nullable();
+                $table->enum('slider_status',[1,0])->default(1);
         });
     }
 

@@ -185,6 +185,14 @@
 
                     </li>
                     <li class="nav-item">
+                        <a  href="{{route('slider.index')}}">
+                            <i class="fas fa-images"></i>
+                            <p>Slider</p>
+                            <span class="caret"></span>
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
                         <a  href="{{route('page.index')}}">
                             <i class="fas fa-file-alt"></i>
                             <p>Sayfalar</p>
