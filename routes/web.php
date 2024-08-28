@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\PageController;
 Route::view('/', 'backend.default.index')->name('admin.home');
 
 Route::prefix('admin/settings')->group(function () {
@@ -16,3 +17,8 @@ Route::prefix('admin')->group(function () {
     Route::resource('blog',BlogController::class);
     Route::post('/blog/sortable', [BlogController::class, 'sortable'])->name('blog.sortable');
 });
+Route::prefix('admin')->group(function () {
+    Route::resource('page',PageController::class);
+    Route::post('/page/sortable', [PageController::class, 'sortable'])->name('page.sortable');
+});
+
