@@ -5,6 +5,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\Fluent\Concerns\Has;
+
 class UsersController extends Controller
 {
 
@@ -59,7 +61,6 @@ class UsersController extends Controller
         return back()->width('error','Kayıt işlemi başarısız.');
     }
 
-
     public function show(string $id)
     {
         //
@@ -68,47 +69,75 @@ class UsersController extends Controller
     public function edit($id)
     {
         $userEdit=User::find($id);
-        return view('backend.user.edit',compact('userEdit'));
+        return view('backend.users.edit',compact('userEdit'));
     }
 
-
     public function update(Request $request, $id)
-    {        if (strlen($request->user_slug > 3)) {
-                $slug = Str::slug($request->user_slug);
-            } else {
-                $slug = Str::slug($request->user_title);
-            }
+    {
             if ($request->hasFile('user_file')) {
                 $request->validate([
                     'user_file' => 'required|image|mimes:jpg,png,jpeg|max:2048',
-                    'user_content' => 'required',
-                    'user_title' => 'required'
+                    'name' => 'required',
+                    'email' => 'required|email|min:6',
+                    'user_status' => 'required'
                 ]);
                 $fileName = rand(1, 999999) . '-' . $request->user_file->getClientOriginalName();
                 $request->user_file->move(public_path('backend/images/users'), $fileName);
-                $userStore = User::where('id',$id)->update(
-                    [   'user_title' => $request->user_title,
-                        'user_file' => $fileName,
-                        'user_content' => $request->user_content,
-                        'user_status' => $request->user_status,
-                        'user_slug' => $slug
-                    ]);
+                if(strlen($request->password)>0){
+                    $request->validate([
+                        'password' => 'required|min:6'
+                           ]);
+                       $userStore = User::where('id',$id)->update(
+                        [   'name' => $request->name,
+                            'user_file' => $request->user_file,
+                            'password' => Hash::make($request->password),
+                            'email' => $request->email,
+                            'user_status' =>$request->user_status
+                        ]);
+                } else {
+                       $userStore = User::where('id',$id)->update(
+                        [   'name' => $request->name,
+                            'user_file' =>$fileName,
+                            'email' => $request->email,
+                            'user_status' =>$request->user_status
+
+                        ]);
+
+                }
+
                 $path='backend/images/users/'.$request->oldFile;
                 if(file_exists($path)) {
                     @unlink(public_path($path));
                 }
             } else {
-                $request->validate([
-                    'user_content' => 'required',
-                    'user_title' => 'required'
-                ]);
-                $userStore = User::where('id',$id)->update(
-                    [   'user_title' => $request->user_title,
-                        'user_content' => $request->user_content,
-                        'user_status' => $request->user_status,
-                        'user_slug' => $slug
+                if(strlen($request->password)>0){
+                    $request->validate([
+                        'name' => 'required',
+                        'email' => 'required|email',
+                        'user_status' => 'required',
+                        'password' => 'required|min:6'
                     ]);
-            }
+
+                   $userStore = User::where('id',$id)->update(
+                            [   'name' => $request->name,
+                                'password' => Hash::make($request->password),
+                                'email' => $request->email,
+                                'user_status' =>$request->user_status
+
+                            ]);
+
+                    }else{
+                        $userStore = User::where('id',$id)->update(
+                            [   'name' => $request->name,
+                                'email' => $request->email,
+                                'user_status' =>$request->user_status,
+
+                            ]);
+
+                    }
+
+                }
+
 
             if ($userStore) {
                 return redirect(route('user.index'))->with('success', 'işlem başarılı bir şekilde gerçekleşti');

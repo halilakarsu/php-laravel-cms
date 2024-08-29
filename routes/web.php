@@ -33,3 +33,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('user',UsersController::class);
     Route::post('/user/sortable', [UsersController::class, 'sortable'])->name('user.sortable');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
