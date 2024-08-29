@@ -24,21 +24,30 @@ class SlidersController extends Controller
 
 
     public function store(Request $request)
-    {         if(strlen($request->slider_slug)>3){
-              $slug=Str::slug($request->slider_slug);
-            }else {
-                $slug=Str::slug($request->slider_title);
-            }
+    {
+
+        $request->validate([
+            'slider_file'=>'required|image|mimes:jpg,jpeg,png|max:2024',
+            'slider_title'=>'required',
+            'slider_url'=>'required|active_url',
+            'slider_content'=>'required'
+        ]);
+
+        if(strlen($request->slider_slug)>3){
+            $slug=Str::slug($request->slider_slug);
+        }else {
+            $slug=Str::slug($request->slider_title);
+        }
+
         if($request->hasFile('slider_file')){
             $request->validate([
-              'slider_file'=>'required|image|mimes:jpg,jpeg,png|max:2024',
-              'slider_title'=>'required',
-              'slider_content'=>'required'
+              'slider_file'=>'required|image|mimes:jpg,jpeg,png|max:2024'
             ]);
             $fileName=rand(1,999999).'-'.$request->slider_file->getClientOriginalName();
             $request->slider_file->move(public_path('/backend/images/sliders'),$fileName);
             $sliderStore=Sliders::insert([
               'slider_file'=>$fileName,
+                'slider_url'=>$request->slider_url,
               'slider_title'=>$request->slider_title,
               'slider_content'=>$request->slider_content,
               'slider_status'=>$request->slider_status,
@@ -47,14 +56,12 @@ class SlidersController extends Controller
 
         }
         else {
-            $request->validate([
-                'slider_title'=>'required',
-                'slider_content'=>'required'
-            ]);
+
             $sliderStore=Sliders::insert([
                 'slider_title'=>$request->slider_title,
                 'slider_content'=>$request->slider_content,
                 'slider_status'=>$request->slider_status,
+                'slider_url'=>$request->slider_url,
                 'slider_slug'=>$request->$slug
             ]);
         }
@@ -103,6 +110,7 @@ class SlidersController extends Controller
                 'slider_title'=>$request->slider_title,
                 'slider_content'=>$request->slider_content,
                 'slider_status'=>$request->slider_status,
+                'slider_status'=>$request->slider_url,
                 'slider_slug'=>$slug
             ]);
             $path='/backend/images/slider'.$request->oldFile;
@@ -115,6 +123,7 @@ class SlidersController extends Controller
                 'slider_title'=>$request->slider_title,
                 'slider_content'=>$request->slider_content,
                 'slider_status'=>$request->slider_status,
+                'slider_url'=>$request->slider_url,
                 'slider_slug'=>$slug
             ]);
         }

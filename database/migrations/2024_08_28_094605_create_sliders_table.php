@@ -16,6 +16,7 @@ return new class extends Migration
                 $table->timestamps();
                 $table->string('slider_title');
                 $table->string('slider_slug');
+                $table->string('slider_url');
                 $table->string('slider_file');
                 $table->string('slider_sort')->nullable();
                 $table->text('slider_content')->nullable();
@@ -23,9 +24,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('sliders');

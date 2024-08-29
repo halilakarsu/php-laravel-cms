@@ -15,11 +15,11 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('slider.index')}}">Slider</a>
+                            <a href="{{route('user.index')}}">user</a>
                         </li>
                     </ul>
                 </div>
-                <div align="right"><a href="{{route('slider.create')}}" class=" btn btn-xs btn-success">+Ekle</a></div>
+                <div align="right"><a href="{{route('user.create')}}" class=" btn btn-xs btn-success">+Ekle</a></div>
                 <div class="page-category">
                     <div class="card full-height">
                         <div class="card-body">
@@ -28,20 +28,20 @@
                                     <thead class="bg-primary text-light">
                                     <tr>
                                         <th>Görsel</th>
-                                        <th>Başlık</th>
+                                        <th>Ad Soyad</th>
                                         <th>İşlemler</th>
                                     </tr>
                                     </thead>
                                     <tbody id="sortable">
-                                    @foreach($sliders as $key)
-                                        <td width="10px" id="item-{{$key->id}}" class="sortable">
-                                            <img width="150px" src="/backend/images/sliders/{{$key['slider_file']}}">
-                                        </td>
-                                            <td> {{$key['slider_title']}}</td>
-
-                                            <td width="4px" >
+                                    @foreach($users as $user)
+                                        <tr id="item-{{$key->id}}">
+                                            <td class="sortable" > {{$user->user_file}}</td>
+                                            <td class="sortable" > {{$user->user_name}}</td>
+                                            <img width="20%" src="/backend/images/users/{{$key['user_file']}}">
+                                            </td>
+                                            <td>
                                                     <a href="javascript:void(0)"><i id="{{$key->id}}" class="fa fa-trash-alt text-danger"></i></a>
-                                                <a  href="{{route('slider.edit',$key->id)}}"><i class="fa fa-edit text-primary ml-3"></i></a>
+                                                <a  href="{{route('user.edit',$key->id)}}"><i class="fa fa-edit text-primary ml-3"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -70,7 +70,7 @@
                         $.ajax({
                             type:"POST",
                             data:data,
-                            url:"{{route('slider.sortable')}}",
+                            url:"{{route('user.sortable')}}",
                             success:function (msg){
                                 if(msg) {
                                     alertify.success("islem basarili");
@@ -89,7 +89,7 @@
                     function () {
                     $.ajax({
                         type:"DELETE",
-                        url:"slider/"+destroy_id,
+                        url:"user/"+destroy_id,
                         success:function(msg){
                             if(msg){
                                 $("#item-"+destroy_id).remove();

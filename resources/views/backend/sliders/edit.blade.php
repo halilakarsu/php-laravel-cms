@@ -56,10 +56,15 @@
                                             <input type="text" class="form-control" name="slider_slug" value="{{$sliderEdit->slider_slug}}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="password">Sayfa İçerik</label>
+                                            <label for="password">Slider İçerik</label>
                                             <textarea class="form-control"  name="slider_content" >{{ $sliderEdit->slider_content}}
                                             </textarea>
                                         </div>
+                                            <div class="form-group">
+                                                <label for="password">Slider Url</label>
+                                                <input class="form-control" type="text"  name="slider_url" >{{ $sliderEdit->slider_url}}
+                                            </input>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="password">Durum</label>
                                                 <select class="form-control"  name="slider_status">

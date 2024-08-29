@@ -2,5 +2,8 @@
     cursor:-webkit-grab;
     cursor:grab;
 
+}
 
+.table>tbody>tr>td{
+    vertical-align: middle;
 }

@@ -4,7 +4,7 @@
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Slider</h4>
+                    <h4 class="page-title">User</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="#">
@@ -15,13 +15,13 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Slider</a>
+                            <a href="#">User</a>
                         </li>
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Slider Ekle</a>
+                            <a href="#">User Ekle</a>
                         </li>
                     </ul>
                 </div>
@@ -29,38 +29,34 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">Slider Oluşturma Formu</div>
+                                <div class="card-title">User Oluşturma Formu</div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12">
-                                        <form method="post" action="{{route('slider.store')}}" enctype="multipart/form-data">
+                                        <form method="post" action="{{route('user.store')}}" enctype="multipart/form-data">
                                             @csrf
                                         <div class="form-group">
                                             <label for="email2">Resim Ekle</label>
-                                            <input type="file" class="form-control" name="slider_file" placeholder="Slider Slider Seçiniz">
+                                            <input type="file" class="form-control" name="user_file" placeholder="User User Seçiniz">
                                             <small  class="form-text text-muted">Yükleyeceğiniz resim 2MB boyutundan büyük olmamalıdır.</small>
                                         </div>
                                         <div class="form-group">
-                                            <label for="email2">Başlık</label>
-                                            <input type="text" class="form-control" name="slider_title" id="email2" placeholder="Lütfen Slider Başlığı Giriniz">
+                                            <label for="email2">Adı Soyadı</label>
+                                            <input type="text" class="form-control" name="user_name" id="email2" placeholder="Lütfen User Başlığı Giriniz">
                                             </div>
                                         <div class="form-group">
-                                            <label>Seo Link</label>
-                                            <input type="text" class="form-control" name="slider_slug" placeholder="Lütfen seolink giriniz">
+                                            <label>Kullanıcı Adı</label>
+                                            <input type="text" class="form-control" name="email" placeholder="Lütfen kullanıcı adı giriniz">
                                         </div>
-                                            <div class="form-group">
-                                                <label>Slider Link</label>
-                                                <input type="text" class="form-control" name="slider_url" placeholder="Lütfen seolink giriniz">
-                                            </div>
                                         <div class="form-group">
-                                            <label for="password">Slider İçerik</label>
-                                            <textarea class="form-control"  name="slider_content" placeholder="Lütfen içerik giriniz.">
-                                            </textarea>
+                                            <label for="password">Şifre</label>
+                                            <input type="password" class="form-control"  name="password" placeholder="Lütfen içerik giriniz.">
+
                                         </div>
                                             <div class="form-group">
                                                 <label for="password">Durum</label>
-                                                <select class="form-control"  name="slider_status">
+                                                <select class="form-control"  name="user_status">
                                                     <option value="0">Pasif</option>
                                                     <option value="1">Aktif</option>
                                                 </select>
