@@ -28,20 +28,21 @@
                                     <thead class="bg-primary text-light">
                                     <tr>
                                         <th>Görsel</th>
+                                        <th>E-mail</th>
                                         <th>Ad Soyad</th>
                                         <th>İşlemler</th>
                                     </tr>
                                     </thead>
                                     <tbody id="sortable">
                                     @foreach($users as $user)
-                                        <tr id="item-{{$key->id}}">
-                                            <td class="sortable" > {{$user->user_file}}</td>
-                                            <td class="sortable" > {{$user->user_name}}</td>
-                                            <img width="20%" src="/backend/images/users/{{$key['user_file']}}">
+                                        <tr id="item-{{$user->id}}">
+                                            <td width="50%" class="sortable" > <img width="20%" src="/backend/images/users/{{$user->user_file}}"></td>
+                                            <td> {{$user->name}}</td>
+                                            <td> {{$user->email}}</td>
                                             </td>
                                             <td>
-                                                    <a href="javascript:void(0)"><i id="{{$key->id}}" class="fa fa-trash-alt text-danger"></i></a>
-                                                <a  href="{{route('user.edit',$key->id)}}"><i class="fa fa-edit text-primary ml-3"></i></a>
+                                                    <a href="javascript:void(0)"><i id="{{$user->id}}" class="fa fa-trash-alt text-danger"></i></a>
+                                                <a  href="{{route('user.edit',$user->id)}}"><i class="fa fa-edit text-primary ml-3"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

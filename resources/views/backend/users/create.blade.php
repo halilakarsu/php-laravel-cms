@@ -4,7 +4,7 @@
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">User</h4>
+                    <h4 class="page-title">Kullanıcılar</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="#">
@@ -15,13 +15,13 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">User</a>
+                            <a href="#">Kullanıcılar</a>
                         </li>
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">User Ekle</a>
+                            <a href="#">Kullanıcı Ekle</a>
                         </li>
                     </ul>
                 </div>
@@ -29,7 +29,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">User Oluşturma Formu</div>
+                                <div class="card-title">Kullanıcı Oluşturma Formu</div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -38,12 +38,12 @@
                                             @csrf
                                         <div class="form-group">
                                             <label for="email2">Resim Ekle</label>
-                                            <input type="file" class="form-control" name="user_file" placeholder="User User Seçiniz">
+                                            <input type="file" class="form-control" name="user_file">
                                             <small  class="form-text text-muted">Yükleyeceğiniz resim 2MB boyutundan büyük olmamalıdır.</small>
                                         </div>
                                         <div class="form-group">
-                                            <label for="email2">Adı Soyadı</label>
-                                            <input type="text" class="form-control" name="user_name" id="email2" placeholder="Lütfen User Başlığı Giriniz">
+                                            <label for="email2">Ad Soyadı</label>
+                                            <input type="text" class="form-control" name="name" id="email2" placeholder="Lütfen User Başlığı Giriniz">
                                             </div>
                                         <div class="form-group">
                                             <label>Kullanıcı Adı</label>
@@ -51,7 +51,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Şifre</label>
-                                            <input type="password" class="form-control"  name="password" placeholder="Lütfen içerik giriniz.">
+                                            <input type="password" class="form-control"  name="password" placeholder="Lütfen Şifrenizi giriniz.">
 
                                         </div>
                                             <div class="form-group">
@@ -71,8 +71,8 @@
                                 <button class="btn btn-danger">İptal</button>
                             </div>
                                 </form>
-                        </div>
-                    </div>
+                        <</div>
+                    </div
                 </div>
             </div>
         </div>

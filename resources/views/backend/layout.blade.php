@@ -202,7 +202,7 @@
                     </li>
                     <li class="nav-item">
                         <a  href="{{route('user.index')}}">
-                            <i class="fas fa-file-alt"></i>
+                            <i class="fas fa-users"></i>
                             <p>Kullanıcılar</p>
                             <span class="caret"></span>
                         </a>
