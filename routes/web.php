@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\SlidersController;
 use App\Http\Controllers\Backend\UsersController;
 Route::view('/', 'backend.default.index')->name('admin.home');
+Route::view('/login1', 'backend.default.login')->name('admin.login');
 
 Route::prefix('admin/settings')->group(function () {
         Route::get('/', [SettingsController::class, 'index'])->name('settings.index');
