@@ -5,8 +5,9 @@ use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\SlidersController;
 use App\Http\Controllers\Backend\UsersController;
-Route::view('/', 'backend.default.index')->name('admin.home');
-Route::view('/login1', 'backend.default.login')->name('admin.login');
+use App\Http\Controllers\Backend\DefaultController;
+Route::view('admin', 'backend.default.index')->name('admin.home');
+Route::view('admin/login', 'backend.default.login')->name('admin.login');
 
 Route::prefix('admin/settings')->group(function () {
         Route::get('/', [SettingsController::class, 'index'])->name('settings.index');
@@ -38,3 +39,4 @@ Route::prefix('admin')->group(function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('admin/login',[DefaultController::class,'authenticate'])->name('login.enter');
