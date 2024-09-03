@@ -6,47 +6,36 @@ use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\SlidersController;
 use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\DefaultController;
-use Illuminate\Support\Facades\Auth;
 
+Route::prefix('admin')->group(function(){
+Route::view('login', 'backend.default.login')->name('admin.login');
+Route::post('login', [DefaultController::class, 'authenticate'])->name('login.enter');
+Route::get('logout', [DefaultController::class, 'logout'])->name('admin.logout');
+});
 
-Auth::routes();
-Route::view('admin/login', 'backend.default.login')->name('admin.login');
-Route::post('admin/login', [DefaultController::class, 'authenticate'])->name('login.enter');
-Route::view('admin', 'backend.default.index')->name('admin.home');
-
-Route::group(['middleware' => ['auth', 'admin']], function () {
+Route::group(['middleware' => ['admin']], function () {
+Route::prefix('admin')->group(function () {
     Route::get('admin/home', [DefaultController::class, 'index'])->name('admin.home');
-});
+    Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
+    Route::post('settings/sortable', [SettingsController::class, 'sortable'])->name('sortable');
+    Route::get('settings/delete/{id}', [SettingsController::class, 'destroy'])->name('destroy');
+    Route::get('settings/edit/{id}', [SettingsController::class, 'edit'])->name('settings.edit');
+    Route::post('settings/update/{id}', [SettingsController::class, 'update'])->name('settings.update');
 
-Route::group(['middleware' => ['auth', 'admin']], function () {
-Route::prefix('admin/settings')->group(function () {
-    Route::get('/', [SettingsController::class, 'index'])->name('settings.index');
-    Route::post('sortable', [SettingsController::class, 'sortable'])->name('sortable');
-    Route::get('delete/{id}', [SettingsController::class, 'destroy'])->name('destroy');
-    Route::get('edit/{id}', [SettingsController::class, 'edit'])->name('settings.edit');
-    Route::post('update/{id}', [SettingsController::class, 'update'])->name('settings.update');
-});
-});
-Route::prefix('admin')->group(function () {
     Route::resource('blog', BlogController::class);
-    Route::post('/blog/sortable', [BlogController::class, 'sortable'])->name('blog.sortable');
-});
-Route::prefix('admin')->group(function () {
+    Route::post('blog/sortable', [BlogController::class, 'sortable'])->name('blog.sortable');
     Route::resource('page', PageController::class);
     Route::post('/page/sortable', [PageController::class, 'sortable'])->name('page.sortable');
-});
 
-Route::prefix('admin')->group(function () {
     Route::resource('slider', SlidersController::class);
     Route::post('/slider/sortable', [SlidersController::class, 'sortable'])->name('slider.sortable');
-});
 
-Route::prefix('admin')->group(function () {
     Route::resource('user', UsersController::class);
     Route::post('/user/sortable', [UsersController::class, 'sortable'])->name('user.sortable');
+
 });
 
-
+});
 
 
 

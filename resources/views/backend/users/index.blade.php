@@ -39,8 +39,7 @@
                                             <td width="50%" class="sortable" > <img width="20%" src="/backend/images/users/{{$user->user_file}}"></td>
                                             <td> {{$user->name}}</td>
                                             <td> {{$user->email}}</td>
-                                            </td>
-                                            <td>
+                                                     <td>
                                                     <a href="javascript:void(0)"><i id="{{$user->id}}" class="fa fa-trash-alt text-danger"></i></a>
                                                 <a  href="{{route('user.edit',$user->id)}}"><i class="fa fa-edit text-primary ml-3"></i></a>
                                             </td>

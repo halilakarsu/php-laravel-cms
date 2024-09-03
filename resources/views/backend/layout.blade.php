@@ -73,25 +73,25 @@
                     <li class="nav-item dropdown hidden-caret">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                             <div class="avatar-sm">
-                                <img src="/backend/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                                <img src="/backend/images/users/{{Auth::user()->user_file}}" alt="user-profile" class="avatar-img rounded-circle">
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-user animated fadeIn">
                             <div class="dropdown-user-scroll scrollbar-outer">
                                 <li>
                                     <div class="user-box">
-                                        <div class="avatar-lg"><img src="/backend/assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
+                                        <div class="avatar-lg"><img src="/backend/images/users/{{Auth::user()->user_file}}" alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text">
-                                            <h4>Hizrian</h4>
-                                            <p class="text-muted">hello@example.com</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">Profil</a>
+                                            <h4>{{Auth::user()->name}}</h4>
+                                            <p class="text-muted">{{Auth::user()->email}}</p><a href="{{route('user.edit',Auth::user()->id)}}" class="btn btn-xs btn-secondary btn-sm">Profil</a>
                                         </div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Ayarlar</a>
+                                    <a class="dropdown-item" href="{{route('settings.index')}}">Ayarlar</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Çıkış</a>
+                                    <a class="dropdown-item" href="{{route('admin.logout')}}">Çıkış</a>
                                 </li>
                             </div>
                         </ul>
@@ -108,12 +108,12 @@
             <div class="sidebar-content">
                 <div class="user">
                     <div class="avatar-sm float-left mr-2">
-                        <img src="/backend/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                        <img src="/backend/images/users/{{Auth::user()->user_file}}" alt="..." class="avatar-img rounded-circle">
                     </div>
                     <div class="info">
                         <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-								Halil Akarsu
+								{{Auth::user()->name}}
 									<span class="user-level">Yönetici</span>
 									<span class="caret"></span>
 								</span>
@@ -128,7 +128,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#edit">
+                                    <a href="{{route('user.edit',Auth::user()->id)}}">
                                         <span class="link-collapse">Profil Güncelle</span>
                                     </a>
                                 </li>

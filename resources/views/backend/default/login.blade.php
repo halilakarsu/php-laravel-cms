@@ -19,6 +19,11 @@
             {{session('error')}}
           </div>
         @endif
+            @if(Session::has('success'))
+                <div class="alert alert-success">
+                    {{session('success')}}
+                </div>
+            @endif
         <h2 class="text-center">Giriş</h2>
         <form method="post" action="{{route('login.enter')}}">
             <div class="form-group">

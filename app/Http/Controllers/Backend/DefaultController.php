@@ -30,4 +30,9 @@ class DefaultController extends Controller
             return back()->with('error', 'Hatalı Giriş Yapıldı');
         }
     }
+
+    public function logout(){
+      Auth::logout();
+      return redirect(route('admin.login'))->with('success','Güvenli Çıkış yapıldı.');
+      }
 }

@@ -16,9 +16,17 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role == 'admin') {
+        // Kullanıcı oturum açmamışsa
+        if (!Auth::check()) {
+            return redirect()->route('admin.login')->with('error', 'Lütfen önce giriş yapınız.');
+        }
+
+        // Kullanıcı oturum açmış ve admin ise isteği devam ettir
+        if (Auth::user()->role == 'admin') {
             return $next($request);
         }
-        return redirect(route('admin.login'))->with('error', 'Bu Sayfayı görmeye Yetkiniz Yoktur.');
+
+        // Kullanıcı oturum açmış ama admin değilse yetkisiz erişim mesajı ver
+        return redirect()->route('admin.login')->with('error', 'Bu Sayfayı görmeye Yetkiniz Yoktur.');
     }
 }
