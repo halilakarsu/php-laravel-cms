@@ -151,23 +151,7 @@
 							</span>
                         <h4 class="text-section">Menu</h4>
                     </li>
-                    <li class="nav-item">
-                        <a data-toggle="collapse" href="#base">
-                            <i class="fas fa-layer-group"></i>
-                            <p>Base</p>
-                            <span class="caret"></span>
-                        </a>
-                        <div class="collapse" id="base">
-                            <ul class="nav nav-collapse">
 
-                                <li>
-                                    <a href="components/gridsystem.html">
-                                        <span class="sub-item">Grid System</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
                     <li class="nav-item">
                         <a  href="{{route('settings.index')}}">
                             <i class="fas fa-cog"></i>
